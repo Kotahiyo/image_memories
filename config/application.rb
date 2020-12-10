@@ -31,5 +31,17 @@ module ImageMemories
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.test_framework :rspec,
+                        view_specs: false,
+                        routing_specs: false,
+                        helper_specs: false,
+                        controller_specs: false,
+                        request_specs: true
+    end
   end
 end
