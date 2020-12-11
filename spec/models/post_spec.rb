@@ -19,5 +19,21 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "必要な情報が揃っている時" do
+    let(:post) { build(:post, user_id: user_id) }
+    let!(:user) { create(:user) }
+    let!(:user_id) { user.id }
+    it "ユーザー登録できる" do
+      expect(post).to be_valid
+    end
+  end
+
+  context "title が入力されていない時" do
+    let(:post) { build(:post, user_id: user_id, title: nil) }
+    let!(:user) { create(:user) }
+    let!(:user_id) { user.id }
+    it "エラーになる" do
+      expect(post).to be_invalid
+    end
+  end
 end

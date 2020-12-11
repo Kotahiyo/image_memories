@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :post do
-    title { "MyString" }
-    user { nil }
+    title { Faker::Lorem.characters(number: 10) }
+    user
   end
 end
