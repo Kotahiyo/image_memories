@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :memorie do
-    image { "" }
-    post { nil }
+    image { [Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/test.jpg"), "spec/fixtures/test.jpg")] }
+    post
   end
 end

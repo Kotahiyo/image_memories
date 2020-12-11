@@ -20,4 +20,6 @@ class Memorie < ApplicationRecord
   belongs_to :post
 
   validates :image, presence: true
+
+  mount_uploaders :image, ImagesUploader
 end
