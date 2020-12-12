@@ -28,13 +28,13 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "name が入力されていないと" do
-    let(:user) { build(:user, name: nil) }
+  # context "name が入力されていないと" do
+  #   let(:user) { build(:user, name: nil) }
 
-    it "エラーになる" do
-      expect(user).to be_invalid
-    end
-  end
+  #   it "エラーになる" do
+  #     expect(user).to be_invalid
+  #   end
+  # end
 
   context "email が入力されていないと" do
     let(:user) { build(:user, email: nil) }
