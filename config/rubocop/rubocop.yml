@@ -102,6 +102,9 @@ Lint/UnusedMethodArgument:
 Lint/Void:
   CheckForMethodsWithNoSideEffects: true
 
+Lint/UselessMethodDefinition:
+  Enabled: false
+
 #################### Metrics ###############################
 
 # 30 まではギリギリ許せる範囲だったけど
