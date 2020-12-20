@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions",
   }
-  root "home#index"
-  get "home/index"
+  # root "home#index"
+  # get "home/index"
+  root to: "post#index"
+  resources :posts
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
