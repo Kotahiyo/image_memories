@@ -1,0 +1,15 @@
+<div class="new_form__field">
+  <span>新規投稿</span>
+</div>
+<%= current_user.email %>
+      <%= form_with model: @post, local: true,  html: {class: "form_area"} do |f| %>
+        <div class="form_area__field">
+          <%= f.text_area :title, id: "post_text", placeholder: "投稿内容を入力", rows: 10%>
+          <div class="form_area__hidden_field">
+            <%= hidden_field :post, :user_id, value: current_user.id %>
+          </div>
+            <div class="form_area__action">
+              <%= f.submit "投稿", class: "form_area__action__btn" %>
+            </div>
+        </div>
+      <% end %>
