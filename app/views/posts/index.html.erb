@@ -1,0 +1,14 @@
+<div class="posts_list__field">
+  <span>投稿一覧</span>
+  <ul>
+    <% @posts.each do |post|%>
+      <%= link_to(post_path(:post_id)) do %>
+        <li>
+          Title: <%= post.title %> </br>
+          Created_at： <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>

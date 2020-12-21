@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
-
+    @posts = Post.all.includes(:user).order(id: "DESC")
   end
 
   def show
-
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -16,8 +17,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
-    Post.create(post_params)
+    @post = Post.new(post_params)
+
+    @post.save
+
+    redirect_to root_path
+
   end
 
   def update
@@ -31,6 +36,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    paramas.requie(:post).permit(:title)
+    params.require(:post).permit(:title).merge(user_id: current_user.id)
   end
 end
