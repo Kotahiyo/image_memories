@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -26,7 +26,11 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
 
+    @post.update!(post_params)
+
+    redirect_to root_path
   end
 
   def destroy
