@@ -9,7 +9,7 @@
         </li>
         <ul class="post__admin_actions">
           <li><%= link_to  "編集", edit_post_path(post) %></li>
-          <li>削除</li>
+          <li><%= link_to  "削除", post_path(post), method: :delete %></li>
         </ul>
       <% end %>
     <% end %>
