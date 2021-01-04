@@ -22,7 +22,6 @@ class PostsController < ApplicationController
     @post.save!
 
     redirect_to root_path
-
   end
 
   def update
