@@ -1,0 +1,14 @@
+<div class="new_form__field">
+  <span>編集画面</span>
+</div>
+      <%= form_with model: @post, local: true,  html: {class: "form_area"} do |f| %>
+        <div class="form_area__field">
+          <%= f.text_area :title, id: "post_text", placeholder: "#{@post.title}", rows: 10%>
+          <div class="form_area__hidden_field">
+            <%= hidden_field :post, :user_id, value: current_user.id %>
+          </div>
+            <div class="form_area__action">
+              <%= f.submit "更新", class: "form_area__action__btn" %>
+            </div>
+        </div>
+      <% end %>
