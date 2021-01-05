@@ -2,7 +2,7 @@
   <span>投稿一覧</span>
   <div class="user-field">
   <% if user_signed_in? %>
-    ログインしているユーザー：<%= current_user.email %>
+    ログインしているユーザー：<%= current_user.name %>
     <%= link_to  "ログアウト", destroy_user_session_path,  method: :delete %>
 
   <% else %>
