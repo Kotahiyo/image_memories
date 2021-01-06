@@ -1,0 +1,18 @@
+<div class="new_form__field">
+  <span>投稿詳細</span>
+</div>
+<%= current_user.name %>さんの投稿
+      <ul>
+        <li>
+          投稿者: <%= @post.user.name %> </br>
+          タイトル: <%= @post.title %> </br>
+          投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
+        </li>
+        <ul class="post__admin_actions">
+          <% if user_signed_in? && current_user.id == @post.user_id %>
+            <li><%= link_to  "編集", edit_post_path(@post) %></li>
+            <li><%= link_to  "削除", post_path(@post), method: :delete %></li>
+          <% end %>
+        </ul>
+        </ul>
+  </ul>
