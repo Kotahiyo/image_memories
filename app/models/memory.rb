@@ -16,10 +16,9 @@
 #
 #  fk_rails_...  (post_id => posts.id)
 #
-class Memorie < ApplicationRecord
-  belongs_to :post
+class Memory < ApplicationRecord
+  belongs_to :post, optional: true
 
-  validates :image, presence: true
-
-  mount_uploaders :image, ImagesUploader
+  # validates :image, presence: true
+  mount_uploader :image, ImagesUploader
 end

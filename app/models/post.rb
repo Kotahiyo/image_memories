@@ -18,7 +18,7 @@
 #
 class Post < ApplicationRecord
   belongs_to :user
-  # has_many :memories, dependent: :destroy
-
+  has_many :memories
+  accepts_nested_attributes_for :memories, allow_destroy: true
   validates :title, presence: true
 end

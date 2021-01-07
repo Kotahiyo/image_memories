@@ -2,14 +2,35 @@
   <span>新規投稿</span>
 </div>
 <%= current_user.name %>さんの投稿
-      <%= form_with model: @post, local: true,  html: {class: "form_area"} do |f| %>
+      <%= form_for @post, local: true,  html: {class: "form_area"} do |f| %>
         <div class="form_area__field">
           <%= f.text_area :title, id: "post_text", placeholder: "投稿内容を入力", rows: 10%>
+
+          <div class="form_area__image_field">
+            <%= f.fields_for :memories do |m| %>
+              <%= m.label :image, "画像" %>
+              <%= m.file_field :image, multiple: true, name: "memories[image][]" %>
+              <%= hidden_field :memories, :post_id, value: @post.id %>
+            <% end %>
+          </div>
+
           <div class="form_area__hidden_field">
             <%= hidden_field :post, :user_id, value: current_user.id %>
           </div>
-            <div class="form_area__action">
-              <%= f.submit "投稿", class: "form_area__action__btn" %>
-            </div>
+
+          <div class="form_area__action">
+            <%= f.submit "投稿", class: "form_area__action__btn" %>
+          </div>
+
         </div>
       <% end %>
+
+<%# 投稿画面にて画像を選択
+　複数選択できる。
+　いったん最大６枚まで
+送信をすると Memories の image に保存（post_idがついてる）
+　post 登録と同じフォーム内で登録
+　　複数のテーブルを保存するには？
+　carrierwave という gem を使用（導入済み）
+　
+投稿後は一覧画面に遷移 %>

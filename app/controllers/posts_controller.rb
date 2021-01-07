@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post_memory = @post.memories.build
   end
 
   def edit
@@ -17,9 +18,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-
-    @post.save!
+    post = Post.new(post_params)
+    if post.save!
+      params[:memories][:image].each do |image|
+        post.memories.create(image: image, post_id: post.id)
+      end
+    end
 
     redirect_to root_path
   end
@@ -43,6 +47,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title).merge(user_id: current_user.id)
+      params.require(:post).permit(:title, memories_attributes: [:image]).merge(user_id: current_user.id)
+      # params.require(:post).permit(:title, memories_attributes: [:image, :_destroy, :id])
     end
 end
