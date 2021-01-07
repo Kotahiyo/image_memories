@@ -7,6 +7,12 @@
           投稿者: <%= @post.user.name %> </br>
           タイトル: <%= @post.title %> </br>
           投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
+          <div class="form_image__field">
+            <%= @post.memories.each do |m|%>
+              <%= image_tag m.image.url, size: '200x200'%>
+            <% end %>
+          </div>
+
         </li>
         <ul class="post__admin_actions">
           <% if user_signed_in? && current_user.id == @post.user_id %>
