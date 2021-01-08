@@ -8,7 +8,7 @@
           タイトル: <%= @post.title %> </br>
           投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
           <div class="form_image__field">
-            <%= @post.memories.each do |m|%>
+            <% @post.memories.each do |m|%>
               <%= image_tag m.image.url, size: '200x200'%>
             <% end %>
           </div>
@@ -20,5 +20,4 @@
             <li><%= link_to  "削除", post_path(@post), method: :delete %></li>
           <% end %>
         </ul>
-        </ul>
-  </ul>
+      </ul>
