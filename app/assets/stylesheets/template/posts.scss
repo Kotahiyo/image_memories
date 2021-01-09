@@ -1,0 +1,20 @@
+.posts_list__field {
+  padding: 30px;
+  .posts_title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  .posts_user__field {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    .sign_out {
+      margin-left: 20px;
+      background-color: #BBBBBB;
+      padding: 5px 10px;
+      color: #555555;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+  }
+}

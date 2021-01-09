@@ -1,17 +1,19 @@
 <div class="posts_list__field">
-  <span>投稿一覧</span>
-  <div class="user-field">
-  <% if user_signed_in? %>
-    ログインしているユーザー：<%= current_user.name %>
-    <%= link_to  "ログアウト", destroy_user_session_path,  method: :delete %>
-
-  <% else %>
-  <div class="sign_out_user-field">
-    <span>ログインもしくは新規登録をお願いします</span>
-    <%= link_to  "ログイン", new_user_session_path %>
-    <%= link_to  "新規登録", new_user_registration_path %>
+  <div class="posts_title">
+  <h2>投稿一覧</h2>
   </div>
-  <% end %>
+
+  <div class="posts_user__field">
+    <% if user_signed_in? %>
+      <span> ログインしているユーザー：<%= current_user.name %> </span>
+      <%= link_to  "ログアウト", destroy_user_session_path, class: "sign_out", method: :delete %>
+    <% else %>
+    <div class="registration_field">
+      <span>ログインもしくは新規登録をお願いします</span>
+      <%= link_to  "ログイン", new_user_session_path %>
+      <%= link_to  "新規登録", new_user_registration_path %>
+    </div>
+    <% end %>
 
   </div>
 
@@ -19,22 +21,34 @@
     <%= link_to  "投稿する", new_post_path %>
   </div>
 
-  <ul>
-    <% @posts.each do |post|%>
+  <div class="posts_list">
+    <div class="posts_list__wrap">
+      <% @posts.each do |post|%>
       <%= link_to(post_path(post)) do %>
-        <li>
-          投稿者: <%= post.user.name %> </br>
-          タイトル: <%= post.title %> </br>
+        <div class="posts_list__user_name">
+          投稿者: <%= post.user.name %>
+        </div>
+        <div class="posts_list__title">
+          タイトル: <%= post.title %>
+        </div>
+        <div class="posts_list__display_date">
           投稿日時： <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
-        </li>
-        <ul class="post__admin_actions">
-        <% if user_signed_in? && current_user.id == post.user_id %>
-          <li><%= link_to  "編集", edit_post_path(post) %></li>
-          <li><%= link_to  "削除", post_path(post), method: :delete %></li>
-        <% end %>
+        </div>
+        <div class="posts_admin__action">
+          <% if user_signed_in? && current_user.id == post.user_id %>
+            <span class="editing_btn">
+              <%= link_to  "編集", edit_post_path(post) %>
+            </span>
+            <span class="delete_btn">
+              <%= link_to  "削除",post_path(post), method: :delete %>
+            </span>
+          <% end %>
+        </div>
+        <ul class="posts__admin_actions">
+
         </ul>
       <% end %>
-    <% end %>
-  </ul>
-
+      <% end %>
+    </div>
+  </div>
 </div>
