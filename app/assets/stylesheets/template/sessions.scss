@@ -1,0 +1,42 @@
+.session_form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  .new_session_form {
+    text-align: center;
+    .title {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    .form-area {
+      width: 30%;
+      margin: 0 auto;
+      padding: 20px;
+      border: 5px solid #75A9FF;
+      border-radius: 5px;
+      .field {
+        padding: 5px;
+        font-size: 1.2rem;
+        .input_field {
+          margin-top: 5px;
+          border: 1px solid;
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
+      .actions {
+        padding: 20px;
+        margin-top: 10px;
+        .actions_btn {
+          font-size: 1.2rem;
+          background: #75A9FF;
+          color: white;
+          padding: 10px;
+          border: 1px solid;
+          border-radius: 40px;
+        }
+      }
+    }
+  }
+}
