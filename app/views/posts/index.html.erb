@@ -1,54 +1,56 @@
 <div class="posts_list__field">
-  <div class="posts_title">
+  <div class="posts_title__area">
   <h2>投稿一覧</h2>
   </div>
 
   <div class="posts_user__field">
     <% if user_signed_in? %>
-      <span> ログインしているユーザー：<%= current_user.name %> </span>
-      <%= link_to  "ログアウト", destroy_user_session_path, class: "sign_out", method: :delete %>
+      <span class="login_user"> ログインしているユーザー：<%= current_user.name %> </span>
+      <%= link_to  "ログアウト", destroy_user_session_path, class: "regist_btn", method: :delete %>
+      <div class="post_btn">
+        <%= link_to  "投稿する", new_post_path %>
+      </div>
     <% else %>
     <div class="registration_field">
       <span>ログインもしくは新規登録をお願いします</span>
-      <%= link_to  "ログイン", new_user_session_path %>
-      <%= link_to  "新規登録", new_user_registration_path %>
+      <%= link_to  "ログイン", new_user_session_path, class: "regist_btn"%>
+      <%= link_to  "新規登録", new_user_registration_path, class: "regist_btn" %>
     </div>
     <% end %>
 
   </div>
 
-  <div class="post-btn">
-    <%= link_to  "投稿する", new_post_path %>
-  </div>
 
   <div class="posts_list">
-    <div class="posts_list__wrap">
-      <% @posts.each do |post|%>
+    <% @posts.each do |post|%>
       <%= link_to(post_path(post)) do %>
-        <div class="posts_list__user_name">
-          投稿者: <%= post.user.name %>
-        </div>
-        <div class="posts_list__title">
-          タイトル: <%= post.title %>
-        </div>
-        <div class="posts_list__display_date">
-          投稿日時： <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> </br>
-        </div>
-        <div class="posts_admin__action">
-          <% if user_signed_in? && current_user.id == post.user_id %>
-            <span class="editing_btn">
-              <%= link_to  "編集", edit_post_path(post) %>
-            </span>
-            <span class="delete_btn">
-              <%= link_to  "削除",post_path(post), method: :delete %>
-            </span>
-          <% end %>
-        </div>
-        <ul class="posts__admin_actions">
+        <div class="posts_list__wrap">
+          <div class="posts_info">
+              <span class="posts_list__user_name">
+                投稿者: <%= post.user.name %>
+              </span>
+              <span class="posts_list__display_date">
+                投稿日時： <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
+              </span>
+          </div>
 
-        </ul>
+          <div class="posts_list__title">
+            タイトル: <%= post.title %>
+          </div>
+
+          <div class="posts_admin__action">
+            <% if user_signed_in? && current_user.id == post.user_id %>
+              <span class="editing_btn">
+                <%= link_to  "編集", edit_post_path(post) %>
+              </span>
+              <span class="delete_btn">
+                <%= link_to  "削除",post_path(post), method: :delete %>
+              </span>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-      <% end %>
-    </div>
+    <% end %>
+
   </div>
 </div>
