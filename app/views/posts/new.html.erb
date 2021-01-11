@@ -1,15 +1,30 @@
-<div class="new_form__field">
-  <span>新規投稿</span>
-</div>
-<%= current_user.name %>さんの投稿
-      <%= form_with model: @post, local: true,  html: {class: "form_area"} do |f| %>
+<div class="posts_list__field">
+  <div class="posts_form">
+    <div class="posts_title__area">
+      <h2 class="posts_title">新規投稿</h2>
+    </div>
+    <%= form_for @post, local: true,  html: {class: "form_area"} do |f| %>
+      <span class="posts_user__name"><%= current_user.name %>さんの投稿</span>
         <div class="form_area__field">
-          <%= f.text_area :title, id: "post_text", placeholder: "投稿内容を入力", rows: 10%>
+          <%= f.text_area :title, class: "post_text", placeholder: "新しく登録する入居者の名前を記入ください", rows: 2, cols: 40%>
+
+          <div class="form_area__image_field">
+            <%= f.fields_for :memories do |m| %>
+              <%= m.label :image, "画像" %>
+              <%= m.file_field :image, multiple: true, name: "memories[image][]" %>
+              <%= hidden_field :memories, :post_id, value: @post.id %>
+            <% end %>
+          </div>
+
           <div class="form_area__hidden_field">
             <%= hidden_field :post, :user_id, value: current_user.id %>
           </div>
-            <div class="form_area__action">
-              <%= f.submit "投稿", class: "form_area__action__btn" %>
-            </div>
+
+          <div class="form_area__action">
+            <%= f.submit "投稿", class: "form_area__action__btn" %>
+          </div>
+
         </div>
-      <% end %>
+    <% end %>
+  </div>
+</div>

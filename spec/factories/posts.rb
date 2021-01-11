@@ -20,5 +20,13 @@ FactoryBot.define do
   factory :post do
     title { Faker::Lorem.characters(number: 10) }
     user
+
+    after(:build) do |built_post|
+      built_post.memories << FactoryBot.build(:memory, post: built_post)
+    end
+  end
+
+  factory :memory do
+    image { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/test.jpg"), "spec/fixtures/test.jpg") }
   end
 end

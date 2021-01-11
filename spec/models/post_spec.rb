@@ -20,10 +20,10 @@ require "rails_helper"
 
 RSpec.describe Post, type: :model do
   context "必要な情報が揃っている時" do
-    let(:post) { build(:post, user_id: user_id) }
+    let(:post) { create(:post, user_id: user_id) }
     let!(:user) { create(:user) }
     let!(:user_id) { user.id }
-    it "ユーザー登録できる" do
+    it "投稿ができる" do
       expect(post).to be_valid
     end
   end

@@ -16,9 +16,7 @@
 #
 #  fk_rails_...  (post_id => posts.id)
 #
-FactoryBot.define do
-  factory :memorie do
-    image { [Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/test.jpg"), "spec/fixtures/test.jpg")] }
-    post
-  end
+class Memory < ApplicationRecord
+  belongs_to :post, optional: true
+  mount_uploader :image, ImagesUploader
 end

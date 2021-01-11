@@ -1,0 +1,102 @@
+.posts_list__field {
+  padding: 30px;
+  .posts_title__area {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    .posts_title {
+      text-align: center;
+    }
+  }
+  .posts_user__name {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .posts_form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    .form_area {
+      width: 80%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .form_area__field {
+      padding: 5px 10px;
+    }
+    .post_text {
+      border: 1px solid;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .form_area__action {
+      margin-top: 30px;
+      width: 55%;
+      display: flex;
+      justify-content: flex-end;
+      .form_area__action__btn {
+        background: #75A9FF;
+        color: white;
+        padding: 10px 20px;
+        border: 1px solid;
+        border-radius: 40px;
+      }
+    }
+  }
+  .posts_user__field {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    .login_user {
+      padding: 5px 10px;
+    }
+    .regist_btn {
+      margin-left: 20px;
+      margin-right: 10px;
+      background-color: #BBBBBB;
+      padding: 5px 10px;
+      color: #555555;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+    .post_btn {
+      background: #75A9FF;
+      color: white;
+      width: 100px;
+      text-align: center;
+      padding: 5px 15px;
+      display: inline;
+      border: 1px solid;
+      border-radius: 5px;
+    }
+  }
+  .posts_list__wrap {
+    border: 3px solid #777777;
+    width: 60%;
+    padding: 10px;
+    background: #FFFAF0;
+    margin-bottom: 20px;
+  }
+  .posts_info {
+    margin-bottom: 10px;
+  }
+  .posts_list__user_name {
+    margin-right: 50px;
+  }
+  .posts_list__title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  .posts_admin__action {
+    display: flex;
+    justify-content: flex-end;
+    color: #AAAAAA;
+    :hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  .delete_btn {
+    margin-left: 10px;
+  }
+}
