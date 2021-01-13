@@ -1,29 +1,21 @@
-<div class="new_form__field">
-  <span>編集画面</span>
-</div>
-      <%= form_for @post, local: true,  html: {class: "form_area"} do |f| %>
+<div class="posts_list__field">
+  <div class="posts_form">
+    <div class="posts_title__area">
+      <h2 class="posts_title">編集画面</h2>
+    </div>
+    <%= form_for @post, local: true,  html: {class: "form_area"} do |f| %>
         <div class="form_area__field">
-          <%= f.text_area :title, id: "post_text", placeholder: "#{@post.title}", rows: 10%>
+          <%= f.text_area :title, class: "post_text", placeholder: "#{@post.title}", rows: 2, cols: 40%>
+
           <div class="form_area__hidden_field">
             <%= hidden_field :post, :user_id, value: current_user.id %>
           </div>
 
-          <div class="form_area__image_field">
-            <%= f.fields_for :memories do |memory| %>
-              <%= memory.label :image, "画像" %>
-              <%= memory.file_field :image, multiple: true, name: "memories[image][]" %>
-              <%= hidden_field :memories, :post_id, value: @post.id %>
-            <% end %>
+          <div class="form_area__action">
+            <%= f.submit "更新", class: "form_area__action__btn" %>
           </div>
 
-          <div class="form_image__field">
-            <% @post.memories.each do |m|%>
-              <%= image_tag m.image.url, size: '200x200'%>
-            <% end %>
-          </div>
-
-            <div class="form_area__action">
-              <%= f.submit "更新", class: "form_area__action__btn" %>
-            </div>
         </div>
-      <% end %>
+    <% end %>
+  </div>
+</div>

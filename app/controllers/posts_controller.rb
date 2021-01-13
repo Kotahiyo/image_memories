@@ -19,10 +19,11 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
-    if post.save!
-      params[:memories][:image].each do |image|
-        post.memories.create(image: image, post_id: post.id)
-      end
+
+    post.save!
+
+    params[:memories][:image].each do |image|
+      post.memories.create(image: image, post_id: post.id)
     end
 
     redirect_to root_path
@@ -47,6 +48,6 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, memories_attributes: [:image]).merge(user_id: current_user.id)
+      params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
     end
 end

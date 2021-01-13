@@ -4,7 +4,7 @@
       <h2 class="posts_title">投稿詳細</h2>
     </div>
 
-    <span class="posts_user__name"><%= current_user.name %>さんの投稿</span>
+    <span class="posts_user__name"><%= @post.user.name %>さんの投稿</span>
     <div class="posts_show_form">
       <div class="posts_info">
         <span class="posts_list__title">
@@ -14,22 +14,22 @@
           投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %>
         </span>
       </div>
-          <div class="form_image__field">
-            <% @post.memories.each do |m|%>
-              <%= image_tag m.image.url, size: '200x200'%>
-            <% end %>
-          </div>
+      <div class="form_image">
+        <% @post.memories.each do |m|%>
+          <%= image_tag m.image.url, size: '200x200', class: "form_image__field"%>
+        <% end %>
+      </div>
 
-        <div class="posts_admin__action">
-            <% if user_signed_in? && current_user.id == @post.user_id %>
-              <span class="editing_btn">
-                <%= link_to  "編集", edit_post_path(@post) %>
-              </span>
-              <span class="delete_btn">
-                <%= link_to  "削除",post_path(@post), method: :delete %>
-              </span>
-            <% end %>
-          </div>
+      <div class="posts_admin__action">
+        <% if user_signed_in? && current_user.id == @post.user_id %>
+          <span class="editing_btn">
+            <%= link_to  "編集", edit_post_path(@post) %>
+          </span>
+          <span class="delete_btn">
+            <%= link_to  "削除",post_path(@post), method: :delete %>
+          </span>
+        <% end %>
+      </div>
     </div>
 
   </div>
