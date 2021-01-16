@@ -9,7 +9,7 @@
           <%= f.text_area :title, class: "post_text", placeholder: "新しく登録する入居者の名前を記入ください", rows: 2, cols: 40%>
 
           <div class="form_area__image_field">
-            <%= f.fields_for :memories do |m| %>
+            <%= f.fields_for @post.memories do |m| %>
               <%= m.label :image, "画像" %>
               <%= m.file_field :image, multiple: true, name: "memories[image][]" %>
               <%= hidden_field :memories, :post_id, value: @post.id %>
