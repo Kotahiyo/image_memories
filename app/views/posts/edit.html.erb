@@ -11,6 +11,20 @@
             <%= hidden_field :post, :user_id, value: current_user.id %>
           </div>
 
+          <div class="form_image">
+            <% @post.memories.each do |m|%>
+              <%= image_tag m.image.url, size: '200x200', class: "form_image__field"%>
+            <% end %>
+          </div>
+
+          <div class="form_area__image_field">
+            <%= f.fields_for @post.memories do |memory| %>
+              <%= memory.label :image, "画像を追加" %>
+              <%= memory.file_field :image, multiple: true, name: "memories[image][]" %>
+              <%= hidden_field :memories, :post_id, value: @post.id %>
+            <% end %>
+          </div>
+
           <div class="form_area__action">
             <%= f.submit "更新", class: "form_area__action__btn" %>
           </div>
