@@ -21,4 +21,12 @@ class Post < ApplicationRecord
   has_many :memories, dependent: :destroy
   accepts_nested_attributes_for :memories, allow_destroy: true
   validates :title, presence: true
+
+  def self.search(search)
+    if search
+      Post.where(["title LIKE ?", "%#{search}%"])
+    else
+      Post.all
+    end
+  end
 end
