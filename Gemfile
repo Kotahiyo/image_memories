@@ -30,6 +30,8 @@ gem "devise"
 gem "mini_magick"
 gem "parser", "~> 2.7.1.0"
 gem 'kaminari'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
