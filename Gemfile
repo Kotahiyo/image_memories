@@ -25,13 +25,13 @@ gem "turbolinks", "~> 5"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem "active_model_serializers", "~> 0.10.0"
+gem "bootstrap", "~> 4.1.1"
 gem "carrierwave", "~> 2.0"
 gem "devise"
+gem "jquery-rails"
+gem "kaminari"
 gem "mini_magick"
 gem "parser", "~> 2.7.1.0"
-gem 'kaminari'
-gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
