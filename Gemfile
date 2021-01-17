@@ -31,6 +31,7 @@ gem "devise"
 gem "jquery-rails"
 gem "kaminari"
 gem "mini_magick"
+gem "mini_racer"
 gem "parser", "~> 2.7.1.0"
 
 # Reduces boot times through caching; required in config/boot.rb
