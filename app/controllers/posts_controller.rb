@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @posts = Post.all.includes(:user).order(id: "DESC")
-    if params[:search] == nil
+    if params[:search].nil?
       redirect_to root_path
     else
       @posts = @posts.search(params[:search])
