@@ -55,6 +55,15 @@
       margin-right: 10px;
       background-color: #BBBBBB;
       padding: 5px 10px;
+      color: white;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+    .regist_new_btn {
+      margin-left: 20px;
+      margin-right: 10px;
+      background-color: #75A9FF;
+      padding: 5px 10px;
       color: #555555;
       border: 1px solid;
       border-radius: 3px;
@@ -67,6 +76,23 @@
       padding: 5px 15px;
       display: inline;
       border: 1px solid;
+      border-radius: 5px;
+    }
+  }
+  .search_field {
+    display: flex;
+    width: 60%;
+    padding: 15px 5px;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    .search_field_type {
+      border: 1px solid;
+      margin: 0 15px;
+    }
+    .search_field_btn {
+      background: #FFFAF0;
+      border: 1px solid;
+      padding: 0 10px;
       border-radius: 5px;
     }
   }

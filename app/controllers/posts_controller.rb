@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
-    @posts = Post.all.includes(:user).order(id: "DESC")
+    @posts = Post.all.includes(:user).order(id: "DESC").search(params[:search])
   end
 
   def show
