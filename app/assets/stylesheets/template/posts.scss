@@ -1,56 +1,20 @@
-.posts_list__field {
+.posts_wrapper {
   padding: 30px;
-  .posts_title__area {
+  &__title {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 30px;
-    .posts_title {
-      text-align: center;
-    }
+    text-align: center;
   }
-  .posts_user__name {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    display: block;
-  }
-  .posts_form {
-    width: 80%;
-    margin: 0 auto;
-    padding: 30px;
-    .form_area {
-      width: 80%;
-      text-align: center;
-      margin: 0 auto;
-    }
-    .form_area__field {
-      padding: 5px 10px;
-    }
-    .post_text {
-      border: 1px solid;
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-    .form_area__action {
-      margin-top: 30px;
-      width: 55%;
-      display: flex;
-      justify-content: flex-end;
-      .form_area__action__btn {
-        background: #75A9FF;
-        color: white;
-        padding: 10px 20px;
-        border: 1px solid;
-        border-radius: 40px;
-      }
-    }
-  }
-  .posts_user__field {
+  // ユーザー情報
+  .user_field {
     font-size: 1.1rem;
     margin-bottom: 30px;
-    .login_user {
+    text-align: center;
+    &__login_user {
       padding: 5px 10px;
     }
-    .regist_btn {
+    &__logout_btn {
       margin-left: 20px;
       margin-right: 10px;
       background-color: #BBBBBB;
@@ -59,75 +23,218 @@
       border: 1px solid;
       border-radius: 3px;
     }
-    .regist_new_btn {
-      margin-left: 20px;
-      margin-right: 10px;
-      background-color: #75A9FF;
-      padding: 5px 10px;
-      color: #555555;
-      border: 1px solid;
-      border-radius: 3px;
-    }
-    .post_btn {
+    &__post_btn {
       background: #75A9FF;
-      color: white;
       width: 100px;
       text-align: center;
       padding: 5px 15px;
       display: inline;
       border: 1px solid;
       border-radius: 5px;
+      a {
+        color: white;
+      }
+    }
+    &__registration_btn {
+      margin-left: 20px;
+      margin-right: 10px;
+      background-color:#BBBBBB;
+      padding: 5px 10px;
+      color: #555555;
+      border: 1px solid;
+      border-radius: 3px;
+    }
+    &__registration_new_btn {
+      margin-left: 20px;
+      margin-right: 10px;
+      background-color: #75A9FF;
+      padding: 5px 10px;
+      color: #ffffff;
+      border: 1px solid;
+      border-radius: 3px;
     }
   }
-  .search_field {
-    display: flex;
-    width: 60%;
+  // 検索窓
+  .search_wrap {
+    width: 30%;
     padding: 15px 5px;
     font-size: 1.2rem;
     margin: 0 auto;
-    .search_field_type {
-      border: 1px solid;
-      margin: 0 15px;
-    }
-    .search_field_btn {
-      background: #FFFAF0;
-      border: 1px solid;
-      padding: 0 10px;
-      border-radius: 5px;
+    &__field {
+      display: flex;
+      justify-content: center;
+      &_type {
+        border: 1px solid;
+        margin: 0 15px;
+      }
+      &_btn {
+        background: #FFFAF0;
+        border: 1px solid;
+        padding: 0 10px;
+        border-radius: 5px;
+      }
     }
   }
-  .posts_list__wrap {
-    border: 3px solid #777777;
-    width: 60%;
-    padding: 10px;
-    background: #FFFAF0;
+  // 一覧画面
+  &__list {
+
+    &_wrap {
+      border: 3px solid #777777;
+      width: 40%;
+      padding: 10px;
+      background: #FFFAF0;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      .post {
+        font-size: 1.2rem;
+        &__top_box {
+          color: 	#808080;
+          margin-bottom: 10px;
+          &__name {
+            margin-right: 50px;
+          }
+        }
+        &__midle_box_title {
+          font-size: 1.3rem;
+          color: #000000;
+        }
+        &__under_box_admin {
+          display: flex;
+          justify-content: flex-end;
+          font-size: 1rem;
+          opacity: 0.7;
+          &__editing_btn {
+            color: 	#808080;
+            margin: 0 5px;
+          }
+          &__delete_btn {
+            color: 	#808080;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+    &_paginate {
+      width: 20%;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      .pagination>li>a {
+        color: #000000;
+        border: none;
+      }
+      .pagination>.active>a {
+        background-color:  #75A9FF;
+        border-radius: 15px;
+      }
+      .pagination>li>a:hover {
+        border-radius: 15px;
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+.posts_user__name {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.posts_form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 30px;
+  .form_area {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .form_area__field {
+    padding: 5px 10px;
+  }
+  .post_text {
+    border: 1px solid;
+    font-size: 1.1rem;
     margin-bottom: 20px;
   }
-  .posts_info {
-    margin-bottom: 10px;
-  }
-  .posts_list__user_name {
-    margin-right: 50px;
-  }
-  .posts_list__title {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-  }
-  .posts_admin__action {
+  .form_area__action {
+    margin-top: 30px;
+    width: 55%;
     display: flex;
     justify-content: flex-end;
-    color: #AAAAAA;
-    :hover {
-      cursor: pointer;
-      text-decoration: underline;
+    .form_area__action__btn {
+      background: #75A9FF;
+      color: white;
+      padding: 10px 20px;
+      border: 1px solid;
+      border-radius: 40px;
     }
   }
-  .form_image__field {
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-bottom: 10px;
+}
+.posts_user__field {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  text-align: center;
+  .login_user {
+    padding: 5px 10px;
   }
-  .delete_btn {
-    margin-left: 10px;
+  .regist_btn {
+    margin-left: 20px;
+    margin-right: 10px;
+    background-color: #BBBBBB;
+    padding: 5px 10px;
+    color: white;
+    border: 1px solid;
+    border-radius: 3px;
   }
+  .regist_new_btn {
+    margin-left: 20px;
+    margin-right: 10px;
+    background-color: #75A9FF;
+    padding: 5px 10px;
+    color: #555555;
+    border: 1px solid;
+    border-radius: 3px;
+  }
+  .post_btn {
+    background: #75A9FF;
+    width: 100px;
+    text-align: center;
+    padding: 5px 15px;
+    display: inline;
+    border: 1px solid;
+    border-radius: 5px;
+    .post_btn > a {
+      color: white;
+    }
+  }
+}
+
+.posts_list__wrap {
+
+}
+.posts_info {
+
+}
+.posts_list__user_name {
+
+}
+.posts_list__title {
+
+}
+.posts_admin__action {
+
+}
+.form_image__field {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.delete_btn {
+  margin-left: 10px;
+}
 }
