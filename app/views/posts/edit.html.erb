@@ -1,35 +1,37 @@
-<div class="posts_list__field">
-  <div class="posts_form">
-    <div class="posts_title__area">
-      <h2 class="posts_title">編集画面</h2>
+<div class="posts_wrapper">
+  <div class="post_content">
+    <div class="post_content__area">
+      <h2 class="post_content__area_title">編集画面</h2>
     </div>
     <%= form_for @post, local: true,  html: {class: "form_area"} do |f| %>
-        <div class="form_area__field">
-          <%= f.text_area :title, class: "post_text", placeholder: "#{@post.title}", rows: 2, cols: 40%>
-
-          <div class="form_area__hidden_field">
-            <%= hidden_field :post, :user_id, value: current_user.id %>
-          </div>
-
-          <div class="form_image">
-            <% @post.memories.each do |m|%>
-              <%= image_tag m.image.url, size: '200x200', class: "form_image__field"%>
-            <% end %>
-          </div>
-
-          <div class="form_area__image_field">
-            <%= f.fields_for @post.memories do |memory| %>
-              <%= memory.label :image, "画像を追加" %>
-              <%= memory.file_field :image, multiple: true, name: "memories[image][]" %>
-              <%= hidden_field :memories, :post_id, value: @post.id %>
-            <% end %>
-          </div>
-
-          <div class="form_area__action">
-            <%= f.submit "更新", class: "form_area__action__btn" %>
-          </div>
-
+      <span class="form_area__user_name"><%= current_user.name %>さんの投稿</span>
+      <div class="form_area__field">
+        <%= f.text_area :title, class: "form_area__field_text", placeholder: "#{@post.title}", rows: 2, cols: 40%>
+        <div class="form_area__hidden_field">
+          <%= hidden_field :post, :user_id, value: current_user.id %>
         </div>
+
+        <div class="posts_wrapper__show_wrap">
+          <div class="post__midle_box_image">
+            <% @post.memories.each do |m|%>
+              <%= image_tag m.image.url, size: '200x200', class: "post__midle_box_image_field"%>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form_area__image_field">
+          <%= f.fields_for @post.memories do |memory| %>
+            <%= memory.label :image, "画像を追加" %>
+            <%= memory.file_field :image, multiple: true, name: "memories[image][]" %>
+            <%= hidden_field :memories, :post_id, value: @post.id %>
+          <% end %>
+        </div>
+
+        <div class="form_area__action">
+          <%= f.submit "画像を追加", class: "form_area__action_btn" %>
+        </div>
+
+      </div>
     <% end %>
   </div>
 </div>

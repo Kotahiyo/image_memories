@@ -1,11 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
-    if params[:search].nil?
-      @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8)
-    else
-      @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8).search(params[:search])
-    end
+    @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8)
+    @posts = @posts.search(params[:search]) if params[:search]
   end
 
   def show

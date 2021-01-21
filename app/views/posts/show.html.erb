@@ -1,36 +1,41 @@
-<div class="posts_list__field">
-  <div class="posts_form">
-    <div class="posts_title__area">
-      <h2 class="posts_title">投稿詳細</h2>
+<div class="posts_wrapper">
+  <div class="post_content">
+    <div class="post_content__area">
+      <h2 class="post_content__area_title">投稿詳細</h2>
     </div>
 
-    <span class="posts_user__name"><%= @post.user.name %>さんの投稿</span>
-    <div class="posts_show_form">
-      <div class="posts_info">
-        <span class="posts_list__title">
+    <div class="posts_wrapper__list_wrap posts_wrapper__show_wrap">
+      <div class="post">
+        <div class="post__top_box">
+          <span class="post__top_box__name">
+            投稿者: <%= @post.user.name %>
+          </span>
+          <span class="post__top_box__time">
+            投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </span>
+        </div>
+
+
+        <div class="post__midle_box_title">
           タイトル: <%= @post.title %>
-        </span>
-        <span class="posts_list__display_date" style="margin-left: 20px">
-          投稿日時： <%= @post.created_at.strftime("%Y-%m-%d %H:%M") %>
-        </span>
-      </div>
-      <div class="form_image">
-        <% @post.memories.each do |m|%>
-          <%= image_tag m.image.url, size: '200x200', class: "form_image__field"%>
-        <% end %>
-      </div>
+        </div>
 
-      <div class="posts_admin__action">
-        <% if user_signed_in? && current_user.id == @post.user_id %>
-          <span class="editing_btn">
-            <%= link_to  "編集", edit_post_path(@post) %>
-          </span>
-          <span class="delete_btn">
-            <%= link_to  "削除",post_path(@post), method: :delete %>
-          </span>
-        <% end %>
+        <div class="post__midle_box_image">
+          <% @post.memories.each do |m|%>
+            <%= image_tag m.image.url, size: '200x200', class: "post__midle_box_image_field"%>
+          <% end %>
+        </div>
+
+        <div class="post__under_box_admin">
+          <% if user_signed_in? && current_user.id == @post.user_id %>
+            <%= link_to  "編集", edit_post_path(@post), {class: "post__under_box_admin__editing_btn"} %>
+            <%= link_to  "削除",post_path(@post), method: :delete, class: "post__under_box_admin__delete_btn" %>
+          <% end %>
+        </div>
       </div>
     </div>
-
+    <div class="form_area__action">
+      <%= link_to  "戻る", root_path(@post), {class: "form_area__action_btn"} %>
+    </div>
   </div>
 </div>
