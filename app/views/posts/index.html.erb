@@ -1,62 +1,67 @@
-<div class="posts_list__field">
-  <div class="posts_title__area">
-  <h2>投稿一覧</h2>
+<div class="posts_wrapper">
+  <div class="posts_wrapper__title">
+    <h2>投稿一覧</h2>
   </div>
 
-  <div class="posts_user__field">
+  <div class="user_field">
     <% if user_signed_in? %>
-      <span class="login_user"> ログインしているユーザー：<%= current_user.name %> </span>
-      <%= link_to  "ログアウト", destroy_user_session_path, class: "regist_btn", method: :delete %>
-      <div class="post_btn">
+      <span class="user_field__login_user"> ログインしているユーザー：<%= current_user.name %> </span>
+      <%= link_to  "ログアウト", destroy_user_session_path, class: "user_field__registration_btn", method: :delete %>
+      <div class="user_field__post_btn">
         <%= link_to  "投稿する", new_post_path %>
       </div>
     <% else %>
-    <div class="registration_field">
+    <div class="user_field__registration">
       <span>ログインもしくは新規登録をお願いします</span>
-      <%= link_to  "ログイン", new_user_session_path, class: "regist_btn"%>
-      <%= link_to  "新規登録", new_user_registration_path, class: "regist_new_btn" %>
+      <%= link_to  "ログイン", new_user_session_path, class: "user_field__registration_btn"%>
+      <%= link_to  "新規登録", new_user_registration_path, class: "user_field__registration_new_btn" %>
     </div>
     <% end %>
 
   </div>
-  <div class="search_field">
-    <p>検索：</p>
-    <%= form_tag(posts_path, :method => 'get') do %>
-      <%= text_field_tag :search, "",  {class: "search_field_type"}%>
-      <%= submit_tag 'Search', :name => nil, class: "search_field_btn" %>
-    <% end %>
+  <div class="search_wrap">
+    <div class="search_wrap__field">
+      <p>検索：</p>
+      <%= form_tag(posts_path, :method => 'get') do %>
+        <%= text_field_tag :search, "",  {class: "search_wrap__field_type"}%>
+        <%= submit_tag 'Search', :name => nil, class: "search_wrap__field_btn" %>
+      <% end %>
+    </div>
+
   </div>
 
-  <div class="posts_list">
+  <div class="posts_wrapper__list">
     <% @posts.each do |post|%>
-      <%= link_to(post_path(post)) do %>
-        <div class="posts_list__wrap">
-          <div class="posts_info">
-              <span class="posts_list__user_name">
+      <%= link_to(post_path(post), :style=>"text-decoration:none;") do %>
+        <div class="posts_wrapper__list_wrap">
+          <div class="post">
+            <div class="post__top_box">
+              <span class="post__top_box__name">
                 投稿者: <%= post.user.name %>
               </span>
-              <span class="posts_list__display_date">
+              <span class="post__top_box__time">
                 投稿日時： <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
               </span>
-          </div>
+            </div>
 
-          <div class="posts_list__title">
-            タイトル: <%= post.title %>
-          </div>
 
-          <div class="posts_admin__action">
-            <% if user_signed_in? && current_user.id == post.user_id %>
-              <span class="editing_btn">
-                <%= link_to  "編集", edit_post_path(post) %>
-              </span>
-              <span class="delete_btn">
-                <%= link_to  "削除",post_path(post), method: :delete %>
-              </span>
-            <% end %>
+            <div class="post__midle_box_title">
+              タイトル: <%= post.title %>
+            </div>
+
+            <div class="post__under_box_admin">
+              <% if user_signed_in? && current_user.id == post.user_id %>
+                  <%= link_to  "編集", edit_post_path(post), {class: "post__under_box_admin__editing_btn"} %>
+                  <%= link_to  "削除",post_path(post), method: :delete, class: "post__under_box_admin__delete_btn" %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
     <% end %>
-    <%= paginate @posts %>
+    <div class="posts_wrapper__list_paginate">
+      <%= paginate @posts %>
+    </div>
+
   </div>
 </div>

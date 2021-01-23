@@ -2,11 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8)
-    if params[:search].nil?
-      redirect_to root_path
-    else
-      @posts = @posts.search(params[:search])
-    end
+    @posts = @posts.search(params[:search]) if params[:search]
   end
 
   def show
