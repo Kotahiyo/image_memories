@@ -19,14 +19,23 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    @post = Post.new(post_params)
 
-    post.save!
+    if @post.save
 
-    params[:memories][:image].each do |image|
-      post.memories.create(image: image, post_id: post.id)
+      if params[:memories][:image]
+        params[:memories][:image].each do |image|
+          @post.memories.create(image: image, post_id: @post.id)
+        end
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
+
+    else
+      render "new"
     end
-    redirect_to root_path
+
   end
 
   def update
