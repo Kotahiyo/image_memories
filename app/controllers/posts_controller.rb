@@ -27,15 +27,13 @@ class PostsController < ApplicationController
         params[:memories][:image].each do |image|
           @post.memories.create(image: image, post_id: @post.id)
         end
-        redirect_to root_path
-      else
-        redirect_to root_path
       end
+
+      redirect_to root_path
 
     else
       render "new"
     end
-
   end
 
   def update

@@ -33,7 +33,7 @@ gem "kaminari"
 gem "mini_magick"
 gem "mini_racer"
 gem "parser", "~> 2.7.1.0"
-gem 'rails-i18n'
+gem "rails-i18n"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 
