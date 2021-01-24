@@ -212,3 +212,9 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Email 又はパスワードが間違ってます"
+        invalid: "Email 又はパスワードが間違ってます"
