@@ -38,6 +38,7 @@ gem "rails-i18n"
 gem "bootsnap", ">= 1.4.2", require: false
 
 group :production, :staging do
+    gem 'dotenv-rails'
     gem 'unicorn'
 end
 

@@ -8,13 +8,15 @@ default: &default
 
 development:
  <<: *default
- database: image_memories_development
+ database: image_memory_development
 
 test:
  <<: *default
- database: image_memories_test
+ database: image_memory_test
 
 production:
  <<: *default
- database: image_memories_production
- password: <%= ENV['WONDERFUL-EDITOR_DATABASE_PASSWORD'] %>
+ database: <%= ENV['DB_NAME'] %>
+ username: <%= ENV['DB_USERNAME'] %>
+ password: <%= ENV['DB_PASSWORD'] %>
+ host: <%= ENV['DB_HOSTNAME'] %>
