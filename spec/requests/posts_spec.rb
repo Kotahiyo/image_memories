@@ -27,4 +27,19 @@ RSpec.describe "Api::V1::Posts", type: :request do
       expect(res["user"]["id"]).to eq post.user.id
     end
   end
+
+  describe "POST /posts" do
+    subject { post(api_v1_posts_path, params: params) }
+    context "適切な値が渡ったとき" do
+    let(:params) do
+      { post: attributes_for(:post) }
+    end
+    fit "記事が作成できる" do
+      subject
+      binding.pry
+      res = JSON.parse(response.body)
+      expect(response).to have_http_status(:ok)
+    end
+    end
+  end
 end

@@ -25,21 +25,25 @@ module Api
       end
 
       def create
-        @post = Post.new(post_params)
+        post = Post.new(post_params)
+        binding.pry
+        post.save!
 
-        if @post.save
+        render json: post
 
-          if params[:memories][:image]
-            params[:memories][:image].each do |image|
-              @post.memories.create(image: image, post_id: @post.id)
-            end
-          end
+        # if @post.save
 
-          redirect_to root_path
+        #   if params[:memories][:image]
+        #     params[:memories][:image].each do |image|
+        #       @post.memories.create(image: image, post_id: @post.id)
+        #     end
+        #   end
 
-        else
-          render "new"
-        end
+        #   redirect_to root_path
+
+        # else
+        #   render "new"
+        # end
       end
 
       def update
@@ -71,7 +75,9 @@ module Api
       private
 
         def post_params
-          params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
+          # params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
+          binding.pry
+          params.require(:post).permit(:title, :user_id).merge(user_id: current_user.id)
         end
 
         def update_post_params
