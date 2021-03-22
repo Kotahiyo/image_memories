@@ -85,6 +85,10 @@ Lint/InheritException:
 # * 同名のメソッドがある場合にローカル変数に `_` を付ける
 # * 一時変数として `_` を付ける
 # というテクニックは頻出する
+
+Lint/SuppressedException:
+  Enabled: false
+
 Lint/UnderscorePrefixedVariableName:
   Enabled: false
 
@@ -259,6 +263,9 @@ Style/FrozenStringLiteralComment:
 #       Style/IfUnlessModifier の設定見てくれないかなぁ？ (v0.36.0)
 Style/GuardClause:
   MinBodyLength: 5
+
+Style/GlobalVars:
+  Enabled: false
 
 # rake タスクの順序の hash は rocket を許可する
 Style/HashSyntax:

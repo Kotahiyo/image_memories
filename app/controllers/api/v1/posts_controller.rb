@@ -11,7 +11,8 @@ module Api
       end
 
       def show
-        @post = Post.find(params[:id])
+        post = Post.find(params[:id])
+        render json: post
       end
 
       def new
@@ -77,6 +78,5 @@ module Api
           params.require(:post).permit(:title, :user_id, memories_attributes: [:image, :id, :_destroy]).merge(user_id: current_user.id)
         end
     end
-
   end
 end
