@@ -1,10 +1,13 @@
 module Api
   module V1
-    class PostsController < ApplicationController
+    class PostsController < BaseApiController
       # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
       def index
-        @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8)
-        @posts = @posts.search(params[:search]) if params[:search]
+        posts = Post.order(updated_at: :desc)
+
+        render json: posts, each_serializer: Api::V1::PostSerializer
+        # @posts = Post.all.includes(:user).order(id: "DESC").page(params[:page]).per(8)
+        # @posts = @posts.search(params[:search]) if params[:search]
       end
 
       def show
