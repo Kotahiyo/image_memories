@@ -78,6 +78,5 @@ module Api
           params.require(:post).permit(:title, :user_id, memories_attributes: [:image, :id, :_destroy]).merge(user_id: current_user.id)
         end
     end
-
   end
 end

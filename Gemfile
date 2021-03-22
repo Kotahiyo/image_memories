@@ -24,7 +24,6 @@ gem "turbolinks", "~> 5"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem "active_model_serializers", "~> 0.10.0"
 gem "bootstrap", "~> 4.1.1"
 gem "carrierwave", "~> 2.0"
 gem "devise"
@@ -38,14 +37,14 @@ gem "rails-i18n"
 gem "bootsnap", ">= 1.4.2", require: false
 
 group :production, :staging do
-    gem 'dotenv-rails'
-    gem 'unicorn'
+  gem "dotenv-rails"
+  gem "unicorn"
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "active_model_serializers", "~> 0.10.0"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem 'active_model_serializers', '~> 0.10.0'
   gem "factory_bot_rails"
   gem "faker"
   gem "pry-byebug"
