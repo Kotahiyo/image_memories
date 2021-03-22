@@ -14,4 +14,17 @@ RSpec.describe "Api::V1::Posts", type: :request do
       expect(res[0].keys).to eq ["id", "title", "updated_at", "user"]
     end
   end
+
+  describe "GET /posts/:id" do
+    subject { get(api_v1_post_path(post_id)) }
+    let!(:post) { create(:post) }
+    let(:post_id) { post.id }
+    fit "記事詳細が取得できる" do
+      subject
+      res = JSON.parse(response.body)
+      expect(response).to have_http_status(200)
+      expect(res["title"]).to eq post.title
+      expect(res["user"]["id"]).to eq post.user.id
+    end
+  end
 end
