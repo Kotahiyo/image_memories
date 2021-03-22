@@ -12,7 +12,7 @@ module Api
 
       def show
         post = Post.find(params[:id])
-        render json: post
+        render json: post, serializer: Api::V1::PostSerializer
       end
 
       def new
@@ -26,10 +26,8 @@ module Api
 
       def create
         post = Post.new(post_params)
-        binding.pry
         post.save!
-
-        render json: post
+        render json: post, serializer: Api::V1::PostSerializer
 
         # if @post.save
 
@@ -76,7 +74,6 @@ module Api
 
         def post_params
           # params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
-          binding.pry
           params.require(:post).permit(:title, :user_id).merge(user_id: current_user.id)
         end
 
