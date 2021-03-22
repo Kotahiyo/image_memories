@@ -12,7 +12,7 @@ module Api
 
       def show
         post = Post.find(params[:id])
-        render json: post
+        render json: post, serializer: Api::V1::PostSerializer
       end
 
       def new
@@ -25,21 +25,23 @@ module Api
       end
 
       def create
-        @post = Post.new(post_params)
+        post = Post.new(post_params)
+        post.save!
+        render json: post, serializer: Api::V1::PostSerializer
 
-        if @post.save
+        # if @post.save
 
-          if params[:memories][:image]
-            params[:memories][:image].each do |image|
-              @post.memories.create(image: image, post_id: @post.id)
-            end
-          end
+        #   if params[:memories][:image]
+        #     params[:memories][:image].each do |image|
+        #       @post.memories.create(image: image, post_id: @post.id)
+        #     end
+        #   end
 
-          redirect_to root_path
+        #   redirect_to root_path
 
-        else
-          render "new"
-        end
+        # else
+        #   render "new"
+        # end
       end
 
       def update
@@ -71,7 +73,8 @@ module Api
       private
 
         def post_params
-          params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
+          # params.require(:post).permit(:title, :user_id, memories_attributes: [:image]).merge(user_id: current_user.id)
+          params.require(:post).permit(:title, :user_id).merge(user_id: current_user.id)
         end
 
         def update_post_params
