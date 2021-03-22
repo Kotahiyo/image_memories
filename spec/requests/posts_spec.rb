@@ -6,11 +6,12 @@ RSpec.describe "Api::V1::Posts", type: :request do
     let!(:post_1) { create(:post, updated_at: 1.days.ago) }
     let!(:post_2) { create(:post, updated_at: 2.days.ago) }
     let!(:post_3) { create(:post) }
-    fit "記事一覧が取得できる" do
+    it "記事一覧が取得できる" do
       subject
-      binding.pry
-      response = JSON.parse(response.body)
+      res = JSON.parse(response.body)
       expect(response).to have_http_status(200)
+      expect(res.length).to eq 3
+      expect(res[0].keys).to eq ["id", "title", "updated_at", "user"]
     end
   end
 end
