@@ -45,8 +45,7 @@ module Api
       end
 
       def update
-        binding.pry
-        post = Post.find(params[:id])
+        post = current_user.posts.find(params[:id])
         post.update!(post_params)
         render json: post, serializer: Api::V1::PostSerializer
 

@@ -54,6 +54,7 @@ RSpec.describe "Api::V1::Posts", type: :request do
       { post: attributes_for(:post, created_at: 1.days.ago) }
     end
     let(:current_user) { create(:user) }
+    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
 
     context "自分が所持している記事を編集したとき" do
       let(:post) { create(:post, user: current_user) }
@@ -67,9 +68,9 @@ RSpec.describe "Api::V1::Posts", type: :request do
     context "他人が所持している記事を編集したとき" do
       let!(:post) { create(:post, user: other_user) }
       let(:other_user) { create(:user) }
-      fit "更新できない" do
-        subject
-        binding.pry
+      it "更新できない" do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound) &
+                                          change { Post.count }.by(0)
       end
     end
   end
