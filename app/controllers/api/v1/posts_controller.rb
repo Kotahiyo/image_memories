@@ -45,21 +45,25 @@ module Api
       end
 
       def update
+        binding.pry
         post = Post.find(params[:id])
+        post.update!(post_params)
+        render json: post, serializer: Api::V1::PostSerializer
 
-        if post.title != params[:post][:title]
 
-          post.update!(post_params)
+        # if post.title != params[:post][:title]
 
-        else
-          post.save!
+        #   post.update!(post_params)
 
-          params[:memories][:image].each do |image|
-            post.memories.create(image: image, post_id: post.id)
-          end
-        end
+        # else
+        #   post.save!
 
-        redirect_to root_path
+        #   params[:memories][:image].each do |image|
+        #     post.memories.create(image: image, post_id: post.id)
+        #   end
+        # end
+
+        # redirect_to root_path
       end
 
       def destroy
