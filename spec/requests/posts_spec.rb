@@ -16,7 +16,7 @@ RSpec.describe "Api::V1::Posts", type: :request do
   end
 
   describe "GET api/v1/posts/:id" do
-    subject { get(api_v1_post_path(post.id)) }
+    subject { get(api_v1_post_path(post_id)) }
     let!(:post) { create(:post) }
     let(:post_id) { post.id }
     it "記事詳細が取得できる" do
@@ -69,6 +69,30 @@ RSpec.describe "Api::V1::Posts", type: :request do
       let!(:post) { create(:post, user: other_user) }
       let(:other_user) { create(:user) }
       it "更新できない" do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound) &
+                                          change { Post.count }.by(0)
+      end
+    end
+  end
+
+  describe "DELETE /api/v1/posts/:id" do
+    subject { delete(api_v1_post_path(post_id)) }
+    let(:post_id) { post.id }
+    let(:current_user) { create(:user) }
+    before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
+
+    context "自分が所持している記事を削除したとき" do
+      let!(:post) { create(:post, user: current_user) }
+      it "記事が削除される" do
+        expect { subject }.to change { Post.count }.by(-1)
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+
+    context "他人が所持している記事を削除しようとしたとき" do
+      let!(:post) { create(:post, user: other_user) }
+      let(:other_user) { create(:user) }
+      it "削除できない" do
         expect { subject }.to raise_error(ActiveRecord::RecordNotFound) &
                                           change { Post.count }.by(0)
       end

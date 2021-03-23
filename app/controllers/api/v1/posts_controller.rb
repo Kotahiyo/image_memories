@@ -66,11 +66,9 @@ module Api
       end
 
       def destroy
-        @post = Post.find(params[:id])
+        post = current_user.posts.find(params[:id])
 
-        @post.destroy!
-
-        redirect_to root_path
+        post.destroy!
       end
 
       private
