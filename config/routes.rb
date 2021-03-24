@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
   }
 
-  root to: "api/v1/posts#index"
+  # root to: "api/v1/posts#index"
   namespace "api" do
     namespace "v1" do
-      resources :posts
+      resources :posts, defaults: { format: :json }
     end
   end
 
