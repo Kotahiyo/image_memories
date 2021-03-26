@@ -4,12 +4,18 @@
     <template v-for="article in articles">
       <ArticleList :key="article.id" v-bind:article="article"/>
     </template>
+
+    <v-btn
+      elevation="2"
+      outlined
+    > ボタンだよ</v-btn>
   </div>
 </template>
 
 <script>
 import ArticleList from "./components/ArticleList"
 import axios from "axios"
+
 export default {
   name: 'ArticleAPI',
   components: {
@@ -17,7 +23,7 @@ export default {
   },
   data: function () {
     return {
-      message: "Hello Vue!",
+      message: "Image Memory",
       articles: [],
     }
   },
