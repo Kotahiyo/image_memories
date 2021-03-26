@@ -7,8 +7,11 @@
 
 import Vue from "vue";
 import App from "../app.vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
 import router from "../router/router.js";
 
+Vue.use(VueAxios, axios);
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
     router,
