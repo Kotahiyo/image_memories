@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <p>{{ message }}</p>
-    <ArticleList/>
+    <template v-for="article in articles">
+      <ArticleList :key="article.id" v-bind:article="article"/>
+    </template>
   </div>
 </template>
 
@@ -16,14 +18,18 @@ export default {
   data: function () {
     return {
       message: "Hello Vue!",
-      article: null,
+      articles: [],
     }
   },
-  created: function(){
-    axios.get('http://localhost:3000/api/v1/posts')
-    .then(function(response){
+  async created(){
+    try {
+      const response = await axios.get('http://localhost:3000/api/v1/posts')
+      this.articles = response.data
       console.log(response.data);
-    })
+    } catch (error) {
+      const res = error.response
+      console.log(res);
+    }
   }
 }
 </script>
