@@ -1,29 +1,53 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-    <template v-for="article in articles">
-      <ArticleList :key="article.id" v-bind:article="article"/>
-    </template>
+  <v-app id="inspire">
+    <v-app-bar
+      app
+    >
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-    <v-btn
-      elevation="2"
-      outlined
-    > ボタンだよ</v-btn>
-  </div>
+      <v-toolbar-title> {{ app_title }} </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col
+            v-for="article in articles"
+            :key="article.id"
+            cols="4"
+          >
+            <v-card height="150" shaped>
+              <v-card-title>投稿者:</v-card-title>
+              <v-card-subtitle>投稿日時：{{ article.updated_at }}</v-card-subtitle>
+              <v-card-text>
+                {{ article.title }}
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import ArticleList from "./components/ArticleList"
+// import ArticleList from "./components/ArticleList"
 import axios from "axios"
 
 export default {
   name: 'ArticleAPI',
-  components: {
-    ArticleList
-  },
+  // components: {
+  //   ArticleList
+  // },
   data: function () {
     return {
-      message: "Image Memory",
+      app_title: "Image Memory",
       articles: [],
     }
   },
