@@ -17,6 +17,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@mdi/font": "^5.9.55",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",

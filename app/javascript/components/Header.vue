@@ -9,7 +9,7 @@
     <v-spacer></v-spacer>
 
     <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
+      <v-icon>fas fa-search</v-icon>
     </v-btn>
   </v-app-bar>
 </template>
