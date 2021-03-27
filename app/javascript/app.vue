@@ -1,19 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar
-      app
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title> {{ app_title }} </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+    <Header :title="app_title"/>
     <v-main>
       <v-container>
         <v-row>
@@ -22,13 +9,7 @@
             :key="article.id"
             cols="4"
           >
-            <v-card height="150" shaped>
-              <v-card-title>投稿者:</v-card-title>
-              <v-card-subtitle>投稿日時：{{ article.updated_at }}</v-card-subtitle>
-              <v-card-text>
-                {{ article.title }}
-              </v-card-text>
-            </v-card>
+          <ArticleList :article="article"/>
           </v-col>
         </v-row>
       </v-container>
@@ -37,14 +18,16 @@
 </template>
 
 <script>
-// import ArticleList from "./components/ArticleList"
+import ArticleList from "./components/ArticleList"
+import Header from "./components/Header"
 import axios from "axios"
 
 export default {
   name: 'ArticleAPI',
-  // components: {
-  //   ArticleList
-  // },
+  components: {
+    ArticleList,
+    Header
+  },
   data: function () {
     return {
       app_title: "Image Memory",
