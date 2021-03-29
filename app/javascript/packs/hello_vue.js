@@ -9,12 +9,26 @@ import Vue from "vue";
 import App from "../app.vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+import "@mdi/font/css/materialdesignicons.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 import router from "../router/router.js";
 
 Vue.use(VueAxios, axios);
+Vue.use(Vuetify);
+
+const vuetify = new Vuetify({
+  icons: {
+    iconfont: "mdi",
+    iconfont: "fa",
+  },
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
     router,
+    vuetify,
     render: (h) => h(App),
   }).$mount();
   document.body.appendChild(app.$el);

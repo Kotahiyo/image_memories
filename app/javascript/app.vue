@@ -1,36 +1,31 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-    <template v-for="article in articles">
-      <ArticleList :key="article.id" v-bind:article="article"/>
-    </template>
-  </div>
+  <v-app id="inspire">
+    <Header :title="app_title"/>
+    <v-main>
+      <v-container>
+        <div class="nav">
+          <router-link to="/">一覧画面</router-link>
+        </div>
+          <router-view/>
+      </v-container>
+    </v-main>
+
+  </v-app>
 </template>
 
 <script>
-import ArticleList from "./components/ArticleList"
-import axios from "axios"
+import Header from "./components/Header"
+
 export default {
   name: 'ArticleAPI',
   components: {
-    ArticleList
+    Header,
   },
   data: function () {
     return {
-      message: "Hello Vue!",
-      articles: [],
+      app_title: "Image Memory",
     }
   },
-  async created(){
-    try {
-      const response = await axios.get('http://localhost:3000/api/v1/posts')
-      this.articles = response.data
-      console.log(response.data);
-    } catch (error) {
-      const res = error.response
-      console.log(res);
-    }
-  }
 }
 </script>
 
